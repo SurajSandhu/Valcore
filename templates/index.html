@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valcore</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="icon"
+type="image/png"
+href="/static/logo.png">
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<div class="brand">
+
+<img
+src="/static/logo.png"
+class="logo"
+alt="Valcore Logo">
+
+<div>
+
+<h1>Valcore</h1>
+
+<p>Machine Learning Threat Detection</p>
+
+</div>
+
+</div>
+
+<div class="online">
+
+<span class="dot"></span>
+
+ONLINE
+
+</div>
+
+</header>
+
+<aside>
+
+<div class="card">
+<h3>SYSTEM</h3>
+
+<div class="info">
+<span>Model</span>
+<strong>Random Forest</strong>
+</div>
+
+<div class="info">
+<span>Dataset</span>
+<strong>UNSW Bot-IoT</strong>
+</div>
+
+<div class="info">
+<span>Framework</span>
+<strong>Flask</strong>
+</div>
+
+<div class="info">
+<span>Detection</span>
+
+<strong>Binary</strong>
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>UPLOAD DATASET</h3>
+
+<form action="/predict" method="POST" enctype="multipart/form-data">
+
+<label class="upload-box" for="fileInput">
+
+    <div class="upload-icon">⬆</div>
+
+    <h4>Select CSV Dataset</h4>
+
+    <p>Click here to browse</p>
+
+    <span id="filename">No file selected</span>
+
+</label>
+
+<input
+    type="file"
+    id="fileInput"
+    name="file"
+    accept=".csv"
+    required
+    hidden>
+
+<button
+    id="analyzeBtn"
+    type="submit">
+
+    Analyze Dataset
+
+</button>
+
+</form>
+
+</div>
+
+</aside>
+
+<main>
+
+<div class="card">
+
+<div class="titleRow">
+
+<h2>Threat Assessment</h2>
+
+{% if threat %}
+<span class="badge badge-{{ threat|lower }}">
+{{ threat }}
+</span>
+{% endif %}
+
+</div>
+
+{% if packets %}
+
+<div class="metrics">
+
+<div class="metric">
+<span>Threat Level</span>
+<strong class="metric-threat">{{ threat }}</strong>
+</div>
+
+<div class="metric">
+<span>Packets Scanned</span>
+<strong>{{ packets }}</strong>
+</div>
+
+<div class="metric">
+<span>Attack Packets</span>
+<strong>{{ attack }}</strong>
+</div>
+
+<div class="metric">
+<span>Normal Packets</span>
+<strong>{{ normal }}</strong>
+</div>
+
+<div class="metric">
+<span>Model Confidence</span>
+<strong>{{ confidence }}%</strong>
+</div>
+
+<div class="metric">
+<span>Security Recommendation</span>
+<strong>{{ recommendation }}</strong>
+</div>
+
+<div class="metric">
+
+    <span>Last Scan</span>
+
+    <strong>{{ timestamp }}</strong>
+
+</div>
+
+</div>
+
+{% elif error %}
+
+<div class="placeholder">
+<h2>Error</h2>
+<p>{{ error }}</p>
+</div>
+
+{% else %}
+
+<div class="placeholder">
+<h1>Awaiting Analysis</h1>
+<p>Upload a CSV file to generate a network threat assessment.</p>
+</div>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+
+<h2>Traffic Distribution</h2>
+
+{% if packets %}
+
+<div class="chart-container">
+<canvas id="trafficChart"></canvas>
+</div>
+
+<script>
+window.attackPackets = {{ attack if attack is defined else 0 }};
+window.normalPackets = {{ normal if normal is defined else 0 }};
+</script>
+
+{% else %}
+
+<div class="placeholder">
+<p>No analysis yet.</p>
+</div>
+
+{% endif %}
+
+</div>
+
+<div class="grid">
+
+<div class="small-card">
+<span>Status</span>
+<h3>READY</h3>
+</div>
+
+<div class="small-card">
+<span>ML Engine</span>
+<h3>Random Forest</h3>
+</div>
+
+<div class="small-card">
+<span>Training Dataset</span>
+<h3>UNSW Bot-IoT</h3>
+</div>
+
+<div class="small-card">
+<span>Backend</span>
+<h3>Flask</h3>
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<footer>
+
+Valcore v1.0
+
+<br>
+
+Build XUN.CRSTL.260710
+
+<br><br>
+
+Machine Learning Based IoT Botnet Detection System
+
+<br>
+
+Powered by Flask • Random Forest • UNSW Bot-IoT Dataset
+
+<br><br>
+
+© 2026 Akshit & Suraj
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

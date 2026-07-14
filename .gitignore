@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+.claude/
+
+# PyCharm
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python cache
+.pytest_cache/
+
+# Model artifacts (optional)
+*.joblib
+
+# Large datasets
+dataset/UNSW_2018_IoT_Botnet_Final_10_Best.csv
+
+# Logs
+*.log
+
+# Environment variables
+.env
