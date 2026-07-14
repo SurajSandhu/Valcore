@@ -1,6 +1,21 @@
 
 # Valcore — IoT Botnet Detection System
 
+## Table of Contents
+
+- Features
+- Dataset Used
+- Model C Feature Set
+- Installation
+- Running the Project
+- Training
+- Evaluation
+- Limitations
+- Future Work
+
+---
+
+
 <p align="center">
   <img src="static/banner2.png" alt="Valcore Logo" width="180">
 </p>
