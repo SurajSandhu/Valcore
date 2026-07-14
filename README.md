@@ -2,7 +2,7 @@
 # Valcore — IoT Botnet Detection System
 
 <p align="center">
-  <img src="static/banner2.png" alt="Valcore Logo" width="300">
+  <img src="static/banner2.png" alt="Valcore Logo" width="360">
 </p>
 
 <h1 align="center">Valcore</h1>
