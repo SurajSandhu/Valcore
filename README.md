@@ -2,7 +2,7 @@
 # Valcore — IoT Botnet Detection System
 
 <p align="center">
-  <img src="static/banner2.png" alt="Valcore Logo" width="180">
+  <img src="static/banner2.png" alt="Valcore Logo" width="360">
 </p>
 
 <h1 align="center">Valcore</h1>
@@ -11,11 +11,27 @@
 Leakage-aware IoT Botnet Detection using Random Forest
 </p>
 
+
 Valcore is a machine-learning system that classifies IoT network traffic as **botnet attack** or **normal**. It pairs a trained Random Forest classifier with a Flask web dashboard: you upload a CSV of network-flow records and receive a per-file threat assessment (attack vs. normal packet counts, model confidence, threat level, and a security recommendation).
 
 The deployed model is **Model C**, the winner of an ablation study that removed host- and port-identifier features so the classifier generalizes to hosts it has never seen, rather than memorizing IP addresses.
 
 ---
+
+## Table of Contents
+
+- Features
+- Dataset Used
+- Model C Feature Set
+- Installation
+- Running the Project
+- Training
+- Evaluation
+- Limitations
+- Future Work
+
+---
+
 
 ## Features
 
